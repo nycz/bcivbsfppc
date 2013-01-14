@@ -19,9 +19,10 @@ Compile:
 
 Run: (not that the dot is not a typo, it should not be a slash instead)
 
-`ewe [dirname].[mainfile]` 
+`ewe /p [dirname].[mainfile]` 
 
 Useful flags for the run command:
+
     /p - to simulate a PocketPC (all windows will appear at the top left of the desktop in this mode - do not move them from there.)
     /s - to simulate a Microsoft Smartphone.
     /w <width> - to specify a specific device screen width in pixels.
