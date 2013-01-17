@@ -49,7 +49,6 @@ class SetTimeTab extends GenericApp {
 
         buttons = new PButton[15];
         paintables = new Paintable[16];
-
         // Top buttons: HH:MM
         int x=30, y=10, w=38, h=70;
         for (int i=0; i<4; i+=1) {
@@ -87,8 +86,13 @@ class SetTimeTab extends GenericApp {
 
     @Override
     protected void specialButtonEvent(PButton btn) {
-        parent.startTimer(Integer.parseInt(buttons[0].text+buttons[1].text),
-                          Integer.parseInt(buttons[2].text+buttons[3].text));
+        for (int i=0; i<4; i+=1) {
+            if (!buttons[i].text.equals("0")) {
+                parent.startTimer(Integer.parseInt(buttons[0].text+buttons[1].text),
+                                  Integer.parseInt(buttons[2].text+buttons[3].text));
+                break;
+            }
+        }
     }
 
     @Override
@@ -140,11 +144,18 @@ class CountdownTab extends GenericApp {
         seconds -= 1;
         if (minutes == 0) {
             if (seconds == 0) {
+                // BEEP BEEP BEEP done
                 Color red = new Color(255,0,0);
                 for (int i=0; i<5; i+=1) {
                     paintables[i].setForeground(red);
                     repaintTarget(paintables[i]);
                 }
+                buttons[0].text = "Back";
+                repaintTarget(buttons[0]);
+                // Hide the bottom button
+                buttons[1].text = "";
+                repaintTarget(buttons[1]);
+
                 Vm.cancelTimer(timer);
             }
         } else if (seconds == -1) {
@@ -177,6 +188,10 @@ class CountdownTab extends GenericApp {
         timeLabels[3].text = (s%10) + "";
         timer = Vm.requestTimer(this, 1000);
         buttons[0].text = "Pause";
+        buttons[1].text = "Stop";
+        for (int i=0; i<5; i+=1) {
+            paintables[i].setForeground(Color.White);
+        }
         repaintAll();
     }
 
@@ -186,7 +201,6 @@ class CountdownTab extends GenericApp {
             Vm.cancelTimer(timer);
             parent.stopTimer();
         } else if (btn.text.equals("Back")) {
-            Vm.cancelTimer(timer);
             parent.stopTimer();
         } else if (btn.text.equals("Pause")) {
             btn.text = "Resume";

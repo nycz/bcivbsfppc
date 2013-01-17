@@ -1,5 +1,6 @@
 package binaryclock.common;
 
+import ewe.fx.Color;
 import ewe.fx.Graphics;
 import ewe.fx.Point;
 import ewe.fx.Rect;
@@ -43,6 +44,10 @@ public abstract class GenericApp extends Control {
         }
 
         for (PButton btn : buttons) {
+            // Ignore buttons without text
+            if (btn.text.equals("")) {
+                continue;
+            }
             if (btn.isIn(p.x, p.y)) {
                 btn.pressed = true;
                 if (btn.isSelectable() && !btn.selected) {
@@ -85,6 +90,8 @@ public abstract class GenericApp extends Control {
         // This gets called after the first pen tap so that the whole
         // screen gets refreshed first
         if (paintTarget == null) {
+            g.setColor(Color.Black);
+            g.fillRect(r.x, r.y, r.width, r.height);
             for (Paintable d : paintables) {
                 d.paint(g);
             }
