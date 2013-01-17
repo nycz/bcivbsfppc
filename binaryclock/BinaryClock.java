@@ -1,4 +1,4 @@
-package binaryclock;
+package binaryclock.binaryclock;
 
 import ewe.fx.Color;
 import ewe.fx.Font;

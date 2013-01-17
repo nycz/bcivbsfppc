@@ -1,4 +1,4 @@
-package binaryclock;
+package binaryclock.common;
 
 import ewe.fx.BufferedGraphics;
 import ewe.fx.Color;
@@ -6,7 +6,6 @@ import ewe.fx.Font;
 import ewe.fx.Graphics;
 import ewe.fx.Point;
 import ewe.fx.Rect;
-import ewe.sys.Vm;
 import ewe.ui.mLabel;
 
 public class Button extends mLabel {

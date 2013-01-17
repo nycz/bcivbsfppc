@@ -1,16 +1,16 @@
-package binaryclock;
+package binaryclock.common;
 
 import ewe.fx.Color;
 import ewe.fx.Font;
 import ewe.fx.Graphics;
 
-import binaryclock.Paintable;
+import binaryclock.common.Paintable;
 
 
-class GLabel extends Paintable {
-    public GLabel(int x, int y, int w, int h, String text, Font font) {
+public class PLabel extends Paintable {
+    public PLabel(int x, int y, int w, int h, String text, Font font) {
         super(x,y,w,h,text,font);
-        fgColor = new Color(40,40,60);
+        fgColor = Color.White;
     }
 
     @Override

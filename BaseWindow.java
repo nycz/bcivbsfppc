@@ -5,16 +5,13 @@ import ewe.fx.Font;
 import ewe.fx.Image;
 import ewe.sys.Time;
 import ewe.sys.Vm;
-import ewe.ui.Control;
 import ewe.ui.Form;
 import ewe.ui.FormFrame;
 import ewe.ui.mButton;
 import ewe.ui.Window;
 
-import binaryclock.BinaryClock;
-import binaryclock.Button;
-import binaryclock.CountdownApp;
-import binaryclock.TimerApp;
+import binaryclock.common.Button;
+import binaryclock.timer.TimerApp;
 
 
 public class BaseWindow extends Form {
@@ -38,8 +35,7 @@ public class BaseWindow extends Form {
         addNext(clockBtn, HSTRETCH|VSHRINK, FILL);
         addLast(countdownBtn, HSTRETCH|VSHRINK, FILL);
 
-        // CountdownApp bc = new CountdownApp(textColor, bgColor, font);
-        TimerApp bc = new TimerApp(textColor, bgColor);
+        TimerApp bc = new TimerApp();
         addLast(bc, STRETCH, FILL);
 
         Vm.requestTimer(this, 60000);
