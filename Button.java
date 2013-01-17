@@ -44,13 +44,13 @@ public class Button extends mLabel {
     public void doPaint(Graphics g, Rect r) {
         BufferedGraphics bg = new BufferedGraphics(g, r);
         Graphics draw = bg.getGraphics();
-        
+
         draw.setColor(backGround);
         draw.fillRect(r.x, r.y, r.width, r.height);
         draw.setColor(foreGround);
         // draw.drawRect(r.x, r.y, r.width, r.height);
         draw.drawText(draw.getFontMetrics(font), new String[]{text}, r, CENTER, CENTER);
-        
+
         draw.free();
         g.flush();
     }

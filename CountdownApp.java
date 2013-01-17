@@ -58,7 +58,7 @@ public class CountdownApp extends CellPanel {
         clockLayout.addNext(minLayout).setTag(INSETS, new Insets(0,10,0,20));
 
         clockLayout.endRow();
-        
+
         addLast(clockLayout);
 
         addLast(new Control()).setTag(INSETS, new Insets(0,0,0,0));
@@ -74,7 +74,7 @@ public class CountdownApp extends CellPanel {
                 endRow();
         }
 
-        Button startButton = new Button("S t a r t", Color.White, 
+        Button startButton = new Button("S t a r t", Color.White,
                                         new Color(40,0,0), font);
         addLast(startButton).setTag(INSETS, new Insets(0,0,0,0));
     }

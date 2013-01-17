@@ -14,12 +14,13 @@ import ewe.ui.Window;
 import binaryclock.BinaryClock;
 import binaryclock.Button;
 import binaryclock.CountdownApp;
+import binaryclock.TimerApp;
 
 
 public class BaseWindow extends Form {
-    Font font;
-    Color textColor = Color.DarkGray;
-    Color bgColor = Color.Black;
+    private final Font font;
+    private final Color textColor = Color.DarkGray;
+    private final Color bgColor = Color.Black;
 
     public BaseWindow() {
         backGround = bgColor;
@@ -29,21 +30,23 @@ public class BaseWindow extends Form {
         windowFlagsToSet |= Window.FLAG_FULL_SCREEN;
         windowFlagsToClear |= Window.FLAG_HAS_TITLE;
 
-        font = new Font("Sans-serif", Font.ITALIC, 14);
+        font = new Font("Sans-serif", Font.PLAIN, 14);
 
         Button clockBtn = new Button("Clock", textColor, bgColor, font);
         Button countdownBtn = new Button("Timer", textColor, bgColor, font);
 
-        addNext(clockBtn);
-        addLast(countdownBtn);
+        addNext(clockBtn, HSTRETCH|VSHRINK, FILL);
+        addLast(countdownBtn, HSTRETCH|VSHRINK, FILL);
 
-        CountdownApp bc = new CountdownApp(textColor, bgColor, font);
-        addNext(bc);
-        
+        // CountdownApp bc = new CountdownApp(textColor, bgColor, font);
+        TimerApp bc = new TimerApp(textColor, bgColor);
+        addLast(bc, STRETCH, FILL);
+
         Vm.requestTimer(this, 60000);
         ticked(0,0);
     }
 
+    @Override
     public void ticked(int timerId, int elapsed) {
         Time t = new Time();
 
@@ -53,8 +56,8 @@ public class BaseWindow extends Form {
             setTitle(date);
     }
 
-    public FormFrame getFormFrame(int options)
-    {
+    @Override
+    public FormFrame getFormFrame(int options) {
         FormFrame ff = super.getFormFrame(options);
         ff.borderWidth = 0;
         ff.title.alignment = VCENTER;

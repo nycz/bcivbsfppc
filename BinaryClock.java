@@ -13,13 +13,13 @@ import ewe.ui.mLabel;
 
 
 public class BinaryClock extends CellPanel {
-    ImageControl[] iHour, iMinute, iSecond;
-    Image[] img;
-    mLabel[] nums;
-    Time lastTime = null;
-    Font font;
-    Color textColor;
-    Color bgColor;
+    private ImageControl[] iHour, iMinute, iSecond;
+    private Image[] img;
+    private mLabel[] nums;
+    private Time lastTime = null;
+    private Font font;
+    private final Color textColor;
+    private final Color bgColor;
 
     public BinaryClock(Color textColor, Color bgColor, Font font) {
         img = new Image[2];
@@ -48,7 +48,7 @@ public class BinaryClock extends CellPanel {
         }
         // Filler instead of H/M/S
         addLast(new Control());
-        
+
         Vm.requestTimer(this, 1000);
         ticked(0,0);
     }
@@ -66,6 +66,7 @@ public class BinaryClock extends CellPanel {
         return imgList;
     }
 
+    @Override
     public void ticked(int timerId, int elapsed) {
         Time t = new Time();
         int hourChange, minuteChange, secondChange;
